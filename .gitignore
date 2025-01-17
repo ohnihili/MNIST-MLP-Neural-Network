@@ -1,0 +1,7 @@
+# Python bytecode files
+__pycache__/
+*.pyc
+*.pyo
+
+# MNIST images (if you don’t want to include them in the repo)
+mnist_images.png

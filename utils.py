@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import load_data as ld
 
 def save_img(n, rows, cols):
-    images, labels = ld.load_train()
+    images, labels = ld.load_for_test()
     plt.figure(figsize=(10, 5))
     for i in range(n):
         plt.subplot(rows, cols, i+1)
@@ -11,7 +11,7 @@ def save_img(n, rows, cols):
         plt.axis('off')
     plt.tight_layout()
     plt.savefig("mnist_images.png")
-    return
+
 
 
 def save_model():

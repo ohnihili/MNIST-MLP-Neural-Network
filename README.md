@@ -19,30 +19,30 @@ A ~98% accuracy model is included to use with predict immediately
 ### 1. Requirements:
    - Check requirements.txt
 
-### 2. Running the Code:
-For running each main method: 
-    Train:
-Train a model on the MNIST dataset by calling the train function
-Saves the model and training curve plots
+### 2. Running each method:
+
+Train:
+Saves both a trained model in a _.npz file as well as a plot of the accuracy and loss during training in "training_curves.png"
+
     train.train_mnist(hidden_size1, hidden_size2, learn_rate, epochs, model_name)
-eg. train.train_mnist(128, 64, .01, 3, "new_model")
+eg. 
+    
+    train.train_mnist(128, 64, .01, 3, "new_model")
 
-    Test:
-Test a model on the MNIST dataset by calling the test function
+Test:
 Prints accuracy of the model on testing set
+
     test.test_mnist(model_name)
-eg. test.test_mnist("new_model")
+eg. 
 
-    Predict:
-Use a trained model to predict what number you've drawn with the predict function
+    test.test_mnist("new_model")
+
+Predict:
+
     d.predict(model_name)
-eg. d.predict("new_model")
+eg. 
 
-
----
-
-## Method Outputs:
-- **Train**: Outputs both a trained model in a _.npz file as well as a plot of the accuracy and loss during training in "training_curves.png"
+    d.predict("new_model")
 
 ---
 

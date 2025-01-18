@@ -13,13 +13,19 @@ can all be altered to test different models/training methods
 
 def train(hidden_size1, hidden_size2, learn_rate, epochs, model_name):
 
+    # initialize model
     model = nn.neural(hidden_size1, hidden_size2)
     images, labels = ld.load_mnist_train()
-    
-    epoch_count = 1
-    correct_pred = 0
+
+    # metrics for plotting
+    train_loss_history = []
+    train_accuracy_history = []
+
 
     for epoch in range(epochs):
+        correct_pred = 0
+        epoch_loss = 1
+
         for img,l in zip(images, labels):
             img.shape += (1,)
             l.shape += (1,)
@@ -37,7 +43,9 @@ def train(hidden_size1, hidden_size2, learn_rate, epochs, model_name):
             out_pre = model.b_h2_out + model.w_h2_out @ h2_act
             output = fn.sigmoid(out_pre)
 
-            #              check accuracy of predictions
+            #             calculate loss and accuracy of epoch
+            loss = fn.cross_entropy_loss(output, l)
+            epoch_loss += loss
             correct_pred += int(np.argmax(output) == np.argmax(l))
             
             #                     backward propagation
@@ -56,12 +64,20 @@ def train(hidden_size1, hidden_size2, learn_rate, epochs, model_name):
             model.w_in_h1 += -learn_rate * delta_h1 @ np.transpose(img)
             model.b_in_h1 += -learn_rate * delta_h1
 
-        print("Epoch",epoch_count, f"accuracy: {round((correct_pred / images.shape[0]) * 100, 2)}%")
-        correct_pred = 0
-        epoch_count += 1
+        # epoch metrics
+        epoch_loss /= images.shape[0]
+        accuracy = (correct_pred / images.shape[0]) * 100 
+        train_loss_history.append(epoch_loss)
+        train_accuracy_history.append(accuracy)
+        
+        # show progress
+        print(f"Epoch {epoch + 1}/{epochs}, Loss: {epoch_loss:.4f}, Accuracy: {accuracy:.2f}%")
 
 
     # save model
     ut.save_model(model, model_name)
+
+    # plot training curves
+    ut.plot_training_curves(train_loss_history, train_accuracy_history)
 
 

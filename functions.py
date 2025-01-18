@@ -13,6 +13,12 @@ def sigmoid(x):
 def sigmoid_der(x):
     return sigmoid(x) * (1 - sigmoid(x))
 
+# cross entropy loss cost function
+def cross_entropy_loss(output, target):
+    return -np.sum(target * np.log(output + 1e-9))  # Avoid log(0) errors
+
 # derivative of cross entropy loss cost function
 def cel_der(output, label):
     return output - label
+
+

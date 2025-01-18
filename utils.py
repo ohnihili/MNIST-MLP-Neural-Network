@@ -3,7 +3,7 @@ import numpy as np
 import neural_network as nn
 
 """
-utility functions used to save, load, and print models for training/testing purposes
+utility functions used to save, load, and visualize models for training/testing purposes
 
 """
 
@@ -40,4 +40,31 @@ def load_model(file_name):
     
     print(f"Model loaded from {file_name}.npz")
     return model
+
+def plot_training_curves(train_loss, train_accuracy, filename="training_curves.png"):
+    epochs = range(1, len(train_loss) + 1)
+    
+    plt.figure(figsize=(12, 5))
+
+    # plot loss
+    plt.subplot(1, 2, 1)
+    plt.plot(epochs, train_loss, label='Training Loss', marker='o')
+    plt.title('Loss Over Epochs')
+    plt.xlabel('Epochs')
+    plt.ylabel('Loss')
+    plt.legend()
+    
+    # plot accuracy
+    plt.subplot(1, 2, 2)
+    plt.plot(epochs, train_accuracy, label='Training Accuracy', marker='o')
+    plt.title('Accuracy Over Epochs')
+    plt.xlabel('Epochs')
+    plt.ylabel('Accuracy (%)')
+    plt.legend()
+    
+    plt.tight_layout()
+
+    # save figures in file
+    plt.savefig(filename)
+    print(f"Training curves saved as {filename}")
 

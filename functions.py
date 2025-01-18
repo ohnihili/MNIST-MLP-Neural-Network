@@ -1,8 +1,8 @@
 import numpy as np
 
 """
-
-
+functions used during forward and backward propagation
+no need for actual cross entropy loss cost function, only derivative is required
 """
 
 # sigmoid activation function
@@ -13,10 +13,6 @@ def sigmoid(x):
 def sigmoid_der(x):
     return sigmoid(x) * (1 - sigmoid(x))
 
-# cross entropy loss cost function
-def cel(output, label):
-    return -np.mean(label * np.log(output + 1e-8) + (1 - label) * np.log(1 - output + 1e-8))
-
-# derivative of cel
+# derivative of cross entropy loss cost function
 def cel_der(output, label):
     return output - label

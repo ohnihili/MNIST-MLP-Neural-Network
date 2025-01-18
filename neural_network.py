@@ -1,15 +1,15 @@
-import load_data as ld
 import numpy as np
 
 """
-
-
+class implementation of the network itself
+w_xx_yy = weights from xx to yy
+b_xx_yy = biases from xx to yy
 """
 class neural:
     # constructor
     def __init__ (self, hidden_size1, hidden_size2):
         # set the number of nodes in each layer
-        self.in_size= 784
+        self.in_size = 784
         self.h1_size = hidden_size1
         self.h2_size = hidden_size2
         self.out_size = 10

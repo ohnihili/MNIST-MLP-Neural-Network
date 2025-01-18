@@ -1,33 +1,43 @@
 import matplotlib.pyplot as plt
 import numpy as np
+import neural_network as nn
 
 """
-
+utility functions used to save, load, and print models for training/testing purposes
 
 """
 
 def save_model(model, file_name):
     np.savez(file_name,
-            w_i_h1=model.w_i_h1,
+            h1_size=model.h1_size,
+            h2_size=model.h2_size,
+            w_in_h1=model.w_in_h1,
             w_h1_h2=model.w_h1_h2,
-            w_h2_o=model.w_h2_o,
-            b_i_h1=model.b_i_h1,
+            w_h2_out=model.w_h2_out,
+            b_in_h1=model.b_in_h1,
             b_h1_h2=model.b_h1_h2,
-            b_h2_o=model.b_h2_o)
-    print(f"Model saved to {file_name}")
+            b_h2_out=model.b_h2_out)
+    print(f"Model saved to {file_name}.npz")
 
 
-def load_model(file_name, model):
-    data = np.load(file_name)
+def load_model(file_name):
+    try:
+        data = np.load(f"{file_name}.npz")
+    except FileNotFoundError:
+        print(f"Error: File {file_name}.npz not found.")
+        return None
     
-    model.w_i_h1 = data['w_i_h1']
+    h1_size = data['h1_size']
+    h2_size = data['h2_size']
+    model = nn.neural(h1_size, h2_size)
+    
+    model.w_in_h1 = data['w_in_h1']
     model.w_h1_h2 = data['w_h1_h2']
-    model.w_h2_o = data['w_h2_o']
-    model.b_i_h1 = data['b_i_h1']
+    model.w_h2_out = data['w_h2_out']
+    model.b_in_h1 = data['b_in_h1']
     model.b_h1_h2 = data['b_h1_h2']
-    model.b_h2_o = data['b_h2_o']
+    model.b_h2_out = data['b_h2_out']
     
-    print(f"Model loaded from {file_name}")
-    
+    print(f"Model loaded from {file_name}.npz")
     return model
 

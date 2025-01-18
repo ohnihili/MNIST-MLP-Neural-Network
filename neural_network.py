@@ -50,7 +50,7 @@ class neural:
     def back(self):
         # calculate error then backprop from out to h2 | d_out_pre == deriv of loss with respect to out_pre
         error = self.cel_der(self.predictions, self.labels.T)
-        d_out_pre = error * self.sigmoid_der(self.out.pre)
+        d_out_pre = error * self.sigmoid_der(self.out_pre)
 
         # calculate gradients for w and b then backprop from h2 to h1
         grad_w_h2_o = np.dot(d_out_pre,self.h2_a.T)

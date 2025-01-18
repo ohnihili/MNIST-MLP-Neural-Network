@@ -1,6 +1,4 @@
 import numpy as np
-import pathlib
-
 
 # loads and processes data for training/testing
 # returns:

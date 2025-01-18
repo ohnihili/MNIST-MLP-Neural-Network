@@ -23,3 +23,5 @@ class neural:
         self.b_in_h1 = np.zeros((self.h1_size, 1))
         self.b_h1_h2 = np.zeros((self.h2_size, 1))
         self.b_h2_out = np.zeros((self.out_size, 1))
+
+

@@ -6,8 +6,7 @@ import numpy as np
 """
 defines the test method that tests a trained model
 """
-
-def test(model_name):
+def test_mnist(model_name):
     model = ut.load_model(model_name)
 
     images, labels = ld.load_mnist_test()
@@ -18,7 +17,7 @@ def test(model_name):
         for img,l in zip(images, labels):
             img.shape += (1,)
             l.shape += (1,)
-            
+
             #           forward propagation
             # input -> h1
             h1_pre = model.b_in_h1 + model.w_in_h1 @ img

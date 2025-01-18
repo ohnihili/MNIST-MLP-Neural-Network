@@ -1,15 +1,33 @@
 import train 
 import test
+import draw as d
 
 """
-main file to train and test models
+main file to train, test, and use models
 
+    Train:
+Train a model on the MNIST dataset by calling the train function
+Saves the model and training curve plots
+    train.train_mnist(hidden_size1, hidden_size2, learn_rate, epochs, model_name)
+eg. train.train_mnist(128, 64, .01, 3, "new_model")
+
+    Test:
+Test a model on the MNIST dataset by calling the test function
+Prints accuracy of the model on testing set
+    test.test_mnist(model_name)
+eg. test.test_mnist("new_model")
+
+    Predict:
+Use a trained model to predict what number you've drawn with the predict function
+    d.predict(model_name)
+eg. d.predict("new_model")
 """
 
 def main():
-    #train.train(128,64,0.01, 5,"mnist_model")
-    #train.train(522,348,0.01,20,"99% Accuracy Model")
-    test.test("97.88% Accuracy Model")
+    # train.train_mnist(128, 64, .01, 3, "new_model")
+    # test.test_mnist("new_model")
+    d.predict("97.88% Accuracy Model")
+
 
 if __name__ == "__main__":
     main()

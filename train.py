@@ -11,7 +11,7 @@ can all be altered to test different models/training methods
 
 """
 
-def train(hidden_size1, hidden_size2, learn_rate, epochs, model_name):
+def train_mnist(hidden_size1, hidden_size2, learn_rate, epochs, model_name):
 
     # initialize model
     model = nn.neural(hidden_size1, hidden_size2)

@@ -41,30 +41,24 @@ def load_model(file_name):
     print(f"Model loaded from {file_name}.npz")
     return model
 
-def plot_training_curves(train_loss, train_accuracy, filename="training_curves.png"):
-    epochs = range(1, len(train_loss) + 1)
+def plot_training_curves(h1_size, h2_size, learn_rate, train_accuracy, filename="training_curves.png"):
+    epochs = range(1, len(train_accuracy) + 1)
     
-    plt.figure(figsize=(12, 5))
+    plt.figure(figsize=(8, 6))
 
-    # plot loss
-    plt.subplot(1, 2, 1)
-    plt.plot(epochs, train_loss, label='Training Loss', marker='o')
-    plt.title('Loss Over Epochs')
-    plt.xlabel('Epochs')
-    plt.ylabel('Loss')
-    plt.legend()
-    
-    # plot accuracy
-    plt.subplot(1, 2, 2)
+    # Plot accuracy
     plt.plot(epochs, train_accuracy, label='Training Accuracy', marker='o')
-    plt.title('Accuracy Over Epochs')
-    plt.xlabel('Epochs')
-    plt.ylabel('Accuracy (%)')
-    plt.legend()
+    plt.xlabel('Epochs', fontsize=12)
+    plt.ylabel('Accuracy (%)', fontsize=12)
+    plt.legend(fontsize=10)
     
-    plt.tight_layout()
+    # Add model information as a subtitle
+    plt.title(f"Training Accuracy Across Epochs\nFor: {filename}", fontsize=14, pad=20)
+    model_info = f"Hidden Layers: {h1_size} and {h2_size}, Learning Rate: {learn_rate}"
+    plt.figtext(0.5, 0.01, model_info, fontsize=10, style='italic', ha='center')
 
-    # save figures in file
+    # Improve layout and save the plot
+    plt.tight_layout(rect=[0, 0.05, 1, 1])
     plt.savefig(filename)
     print(f"Training curves saved as {filename}")
 

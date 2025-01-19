@@ -24,9 +24,9 @@ eg. d.predict("new_model")
 """
 
 def main():
-    # train.train_mnist(128, 64, .01, 3, "new_model")
-    # test.test_mnist("new_model")
-    d.predict("97.88% Accuracy Model")
+    # train.train_mnist(512, 256, .01, 25, "High Accuracy Model")
+    #test.test_mnist("High Accuracy Model")
+    d.predict("High Accuracy Model")
 
 
 if __name__ == "__main__":

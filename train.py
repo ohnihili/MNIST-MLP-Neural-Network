@@ -78,6 +78,6 @@ def train_mnist(hidden_size1, hidden_size2, learn_rate, epochs, model_name):
     ut.save_model(model, model_name)
 
     # plot training curves
-    ut.plot_training_curves(train_loss_history, train_accuracy_history)
+    ut.plot_training_curves(hidden_size1,hidden_size2,learn_rate, train_accuracy_history,model_name)
 
 
